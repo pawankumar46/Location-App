@@ -3,7 +3,7 @@ import { View, Text, FlatList ,Button , StyleSheet} from 'react-native'
 import React ,{useState , useEffect} from 'react'
 import axios from 'axios';
 import { useDispatch , useSelector } from 'react-redux';
-import { addlocation, deleteSingle } from '../Actions/locationActions';
+import { addlocation, deleteAll, deleteSingle } from '../Actions/locationActions';
 import Geolocation from '@react-native-community/geolocation';
 
 const Location = () => {
@@ -51,14 +51,14 @@ const Location = () => {
         
       });
   }
-         //  setTimeout(updatePosition, 3000);
+          setTimeout(updatePosition, 300000);
           
          const handleDelete=(id : any)=>{
              dispatch(deleteSingle(id))
              console.log(id)
          }
         const handleDeleteAll=()=>{
-           // delete all posts 
+             dispatch(deleteAll())
         }
    
   return (

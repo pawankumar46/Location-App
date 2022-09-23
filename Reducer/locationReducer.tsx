@@ -7,8 +7,13 @@ const initialLocation : any = []
           }
           case 'DELETE' : {
               return state.filter((ele : any , index : any)=>{
-                      index !== action.payload
+
+                return   index !== action.payload
               })
+          }
+          case 'DELETE_APP' : {
+             return  initialLocation
+             
           }
         default : {
             return state
