@@ -16,7 +16,7 @@ export default function App() {
   return (
      <Provider store={store}>
     <View style={styles.container}>
-    <Text style={styles.heading}>Location-App</Text>
+    <Text style={styles.heading}>Location-Manager</Text>
        <Location />
       <StatusBar style="auto" backgroundColor='beige'/>
     </View>
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   heading : {
-    marginTop : 100,
-    textAlign : 'center',
+    marginTop : 10,
+    marginLeft : 0,
     fontSize  : 20,
     fontWeight : "bold",
  
