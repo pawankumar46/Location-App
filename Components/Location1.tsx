@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useDispatch , useSelector } from 'react-redux';
 import { addlocation, deleteAll, deleteSingle } from '../Actions/locationActions';
 import { getSingleLocation } from '../Actions/singleLocation';
+import { useInterval } from '../hooks/useInterval';
 
 const Location1 = () => {
      let dateTime  = new Date().toLocaleString()
@@ -39,26 +40,22 @@ const Location1 = () => {
               let loc = {lat : location1.coords.latitude , log : location1.coords.longitude }
               dispatch(getSingleLocation(loc))
               axios.get(`https://us1.locationiq.com/v1/reverse.php?key=pk.70f00946344a6d835d510d9a3550e2e9&lat=${loc.lat}&lon=${loc.log}&format=json`)
-                  .then((res)=>{
-                    const result  = res.data
-                    
-                       let loc : any = {address : result.address.neighbourhood , suburb : result.address.suburb , area : result.address.city_district}
-                        
-                       setCurrent(loc)
-                    
-                  })
-                  .catch((err)=>{
-                     alert(err.message)
-                  })
+               .then((res)=>{
+                  const result  = res.data
+                  
+                     let loc : any = {address : result.address.neighbourhood , suburb : result.address.suburb , area : result.address.city_district}
+                     
+                     setCurrent(loc)
+                  
+               })
+               .catch((err)=>{
+                  alert(err.message)
+               })
           })();
            
       },[])
     
-     
-        
-       
-      
-     const  updatePosition=()=> {
+      const  updatePosition=()=> {
          (async () => {
       
          let { status } = await Location.requestForegroundPermissionsAsync();
@@ -67,20 +64,25 @@ const Location1 = () => {
            return;
          }
          let location1 = await Location.getCurrentPositionAsync({});
-                       let myLatLng  = {lat: location1.coords.latitude, lng: location1.coords.longitude};
-                      axios.get(`https://us1.locationiq.com/v1/reverse.php?key=pk.70f00946344a6d835d510d9a3550e2e9&lat=${myLatLng.lat}&lon=${myLatLng.lng}&format=json`)
-                      .then((res)=>{
-                       const value = res.data
-                         
-                         dispatch(addlocation(value))
-                          setToggle(true)
-                      
-                      })
-                      .catch((err)=> alert(err.message))
-                     })()
+         let myLatLng  = {lat: location1.coords.latitude, lng: location1.coords.longitude};
+         axios.get(`https://us1.locationiq.com/v1/reverse.php?key=pk.70f00946344a6d835d510d9a3550e2e9&lat=${myLatLng.lat}&lon=${myLatLng.lng}&format=json`)
+         .then((res)=>{
+         const value = res.data
+            
+            dispatch(addlocation(value))
+            setToggle(true)
+         
+         })
+         .catch((err)=> alert(err.message))
+      })()
                  
          };
-            setInterval(updatePosition , 300000)
+        
+       
+      useEffect(()=>{
+         updatePosition()
+      },[])
+         useInterval(updatePosition , 300000)
          
          //   setInterval(()=>{
          //     updatePosition()
