@@ -9,7 +9,7 @@ const Maps = () => {
   const single = useSelector((state: any)=>{
     return state.single
  })
- console.log(single)
+
   return (
     <View  style={styles.container}>
     <MapView

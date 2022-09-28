@@ -34,7 +34,7 @@ const Location1 = () => {
             let location1 = await Location.getCurrentPositionAsync({});
              
              setMap(location1)
-             console.log('important',location1)
+            
               let loc = {lat : location1.coords.latitude , log : location1.coords.longitude }
               dispatch(getSingleLocation(loc))
               axios.get(`https://us1.locationiq.com/v1/reverse.php?key=pk.70f00946344a6d835d510d9a3550e2e9&lat=${loc.lat}&lon=${loc.log}&format=json`)
@@ -67,7 +67,7 @@ const Location1 = () => {
                       axios.get(`https://us1.locationiq.com/v1/reverse.php?key=pk.70f00946344a6d835d510d9a3550e2e9&lat=${myLatLng.lat}&lon=${myLatLng.lng}&format=json`)
                       .then((res)=>{
                        const value = res.data
-                          console.log(value)
+                         
                          dispatch(addlocation(value))
                           setToggle(true)
                       
@@ -76,8 +76,9 @@ const Location1 = () => {
                      })()
                  
          };
-           setTimeout(updatePosition , 300000)
+         //   setTimeout(updatePosition , 300000)
           
+           
 
           
           
@@ -112,7 +113,7 @@ const Location1 = () => {
                <FlatList  
                data={location} 
                keyExtractor={(item, i : any) =>  i}
-               initialNumToRender={30}
+               initialNumToRender={10}
                renderItem={({item , index})=>(
 
                     <View>
