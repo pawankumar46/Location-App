@@ -57,7 +57,7 @@ const Location1 = () => {
      
         
        
-        
+      
      const  updatePosition=()=> {
          (async () => {
       
@@ -80,7 +80,8 @@ const Location1 = () => {
                      })()
                  
          };
-         setInterval(updatePosition , 300000)
+            setInterval(updatePosition , 300000)
+         
          //   setInterval(()=>{
          //     updatePosition()
          //   },3000000)
