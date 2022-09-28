@@ -23,6 +23,7 @@ const Location1 = () => {
           
           
       useEffect(()=>{
+         
          (async () => {
       
             let { status } = await Location.requestForegroundPermissionsAsync();
@@ -44,20 +45,21 @@ const Location1 = () => {
                        let loc : any = {address : result.address.neighbourhood , suburb : result.address.suburb , area : result.address.city_district}
                         
                        setCurrent(loc)
+                    
                   })
                   .catch((err)=>{
                      alert(err.message)
                   })
           })();
-          
-          
-            
+           
       },[])
+    
+     
+        
+       
         
      const  updatePosition=()=> {
-
-      
-      (async () => {
+         (async () => {
       
          let { status } = await Location.requestForegroundPermissionsAsync();
          if (status !== 'granted') {
@@ -78,9 +80,13 @@ const Location1 = () => {
                      })()
                  
          };
-           setTimeout(updatePosition , 300000)
-          
+         setInterval(updatePosition , 300000)
+         //   setInterval(()=>{
+         //     updatePosition()
+         //   },3000000)
            
+      
+                        
 
           
           
