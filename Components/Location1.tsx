@@ -55,6 +55,8 @@ const Location1 = () => {
       },[])
         
      const  updatePosition=()=> {
+
+      
       (async () => {
       
          let { status } = await Location.requestForegroundPermissionsAsync();
@@ -76,7 +78,7 @@ const Location1 = () => {
                      })()
                  
          };
-         //   setTimeout(updatePosition , 300000)
+           setTimeout(updatePosition , 300000)
           
            
 
