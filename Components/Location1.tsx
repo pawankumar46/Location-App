@@ -83,7 +83,7 @@ const Location1 = () => {
       // useEffect(()=>{
       //    updatePosition()
       // },[])
-         useInterval(updatePosition , 300000)
+         useInterval(updatePosition , 15000)
          
          //   setInterval(()=>{
          //     updatePosition()
@@ -128,7 +128,7 @@ const Location1 = () => {
                <FlatList  
                data={location} 
                keyExtractor={(item, i : any) =>  i}
-               initialNumToRender={10}
+               initialNumToRender={30}
                renderItem={({item , index})=>(
 
                     <View>
