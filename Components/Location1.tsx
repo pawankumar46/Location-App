@@ -83,7 +83,7 @@ const Location1 = () => {
       // useEffect(()=>{
       //    updatePosition()
       // },[])
-         useInterval(updatePosition , 30000)
+         useInterval(updatePosition , 300000)
          
          //   setInterval(()=>{
          //     updatePosition()
