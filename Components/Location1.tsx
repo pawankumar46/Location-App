@@ -83,7 +83,7 @@ const Location1 = () => {
       // useEffect(()=>{
       //    updatePosition()
       // },[])
-         useInterval(updatePosition , 300000)
+         useInterval(updatePosition , 30000)
          
          //   setInterval(()=>{
          //     updatePosition()
@@ -134,7 +134,7 @@ const Location1 = () => {
                     <View>
        
                         <View style={Styles.text4} >
-                        <Text>{`${item.address.neighbourhood}, ${item.address.suburb}, ${item.address.city_district}`} 
+                        <Text style={{width : '70%'}} >{`${item.address.neighbourhood}, ${item.address.suburb}, ${item.address.city_district}`} 
                         </Text>
                         <View style={Styles.btn1}>
                         <Button onPress={()=>handleDelete(index)}  title='Delete'/>
@@ -167,7 +167,7 @@ const Styles = StyleSheet.create({
     marginLeft : 60, 
    position : 'absolute',
    bottom : 10,
-   color : 'blue'
+ 
 
    },
    main : {
@@ -209,7 +209,7 @@ const Styles = StyleSheet.create({
    btn1 : {
       marginRight : 12,
       borderRadius : 10,
-      backgroundColor : 'red'
+     
    }
    
 })
