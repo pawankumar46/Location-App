@@ -6,6 +6,7 @@ import { useDispatch , useSelector } from 'react-redux';
 import { addlocation, deleteAll, deleteSingle } from '../Actions/locationActions';
 import { getSingleLocation } from '../Actions/singleLocation';
 import { useInterval } from '../hooks/useInterval';
+import { Ionicons } from '@expo/vector-icons'
 
 const Location1 = () => {
      let dateTime  = new Date().toLocaleString()
@@ -79,9 +80,9 @@ const Location1 = () => {
          };
         
        
-      useEffect(()=>{
-         updatePosition()
-      },[])
+      // useEffect(()=>{
+      //    updatePosition()
+      // },[])
          useInterval(updatePosition , 300000)
          
          //   setInterval(()=>{
@@ -108,12 +109,15 @@ const Location1 = () => {
         <View>
                        
       <Text style={Styles.text1}>Current location</Text>
-            <View>
+            <View >
             {current  && (
             <View> 
-               
-               <Text style={Styles.text3}> <Image style={Styles.pic}  source={require('../image/pic.png')} /> 
+               <View style={{flexDirection : 'row', justifyContent : 'space-between' , marginTop :  15}}>
+               <Ionicons name="person-circle-outline" size={40} color="black" />
+               <Text style={Styles.text3}> 
                {Object.values(current).join(', ')}</Text>
+               </View>
+              
             </View>
             )}
             </View>
@@ -129,12 +133,18 @@ const Location1 = () => {
 
                     <View>
        
-                        <View style={Styles.text3} >
+                        <View style={Styles.text4} >
                         <Text>{`${item.address.neighbourhood}, ${item.address.suburb}, ${item.address.city_district}`} 
                         </Text>
-                        <Button onPress={()=>handleDelete(index)}  title='delete'/>
+                        <View style={Styles.btn1}>
+                        <Button onPress={()=>handleDelete(index)}  title='Delete'/>
                         </View>
-                        <Text style={Styles.time}>{time}</Text>
+                        </View>
+                        
+                         <View style={Styles.time}>
+                         <Text >{time}</Text>
+                           </View>
+                        
                     </View>
                )}
                 />
@@ -142,7 +152,7 @@ const Location1 = () => {
                 )}              
                </View>
                   <View style={Styles.btn} >
-                  <Button   title='Clear All' onPress={handleDeleteAll}/>
+                  <Button  title='Clear All' onPress={handleDeleteAll}/>
                   </View>
     
                </View>                               
@@ -152,10 +162,13 @@ const Location1 = () => {
 const Styles = StyleSheet.create({
   
    btn : {
+      width : 300,
       paddingBottom : 30,
-    marginLeft : 150, 
+    marginLeft : 60, 
    position : 'absolute',
-   bottom : 0
+   bottom : 10,
+   color : 'blue'
+
    },
    main : {
       flex : 1
@@ -167,19 +180,36 @@ const Styles = StyleSheet.create({
    },
    text2 : {
       margin : 5,
-      marginTop : 20,
+      marginLeft : 15,
+      marginTop : 50,
       fontSize : 18,
    },
    text3 : {
-   flexDirection : 'row',
-    marginTop : 5
+ 
+    marginTop : 10,
+    marginRight : 140,
+    justifyContent : 'space-between',
    } ,
+   text4 : {
+      flexDirection : 'row',
+    marginTop : 6,
+    marginLeft : 15,
+    justifyContent : 'space-between',
+   },
    time : {
-      fontSize : 12
+      paddingTop : 0,
+      fontSize : 13,
+      marginLeft : 15,
+    
    },
    pic : {
       width : 40,
       height :40
+   },
+   btn1 : {
+      marginRight : 12,
+      borderRadius : 10,
+      backgroundColor : 'red'
    }
    
 })
